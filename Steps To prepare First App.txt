@@ -1,0 +1,197 @@
+Steps to prepare Python Applications:
+--------------------------------------
+To prepare Python applications we have to use the following steps.
+1. Download and Install Python Software
+2. Write and Execute Python Applications
+
+1. Download and Install Python Software:
+----------------------------------------
+1. Open "www.python.org" website in Browser.
+2. Click on "Downloads".
+3. Select "Windows x86-64 executable installer" link
+4. Copy The downloaded Software and maintain that Software in our Softwares dump
+
+5. Double Click on "python-3.7.4-amd64.exe" setup file.
+6. Select "Install Laucher For all USers".[Bydefault Selected]
+7. Select "Add Python 3.7 to PATH".
+8. Click on "Customize Installation" Link.
+9. Click on "Next" button.
+10.Change Python installation location from 
+  "C:\Users\Aditya\AppData\Local\Programs\Python\Python37" to "C:\Python\python37". 
+11. Click on "Install" button.
+12. Click on "Yes" button.
+13. Click on "Close" button.
+
+
+2. Write and Execute Python Applications:
+-----------------------------------------
+To Write and Execute Python applications we will use the following ways.
+
+a) By Using Python Provided IDLE[Integrated Development and Learning Environment]
+b) By Using Python Shell in Command Prompt
+c) By Using Editplus or Some Other Editors.
+d) By Using Jupyter Notebook
+e) By Using PyCharm IDE
+
+a) By Using Python Provided IDLE:
+---------------------------------
+a)Search for IDLE(Python3.7 64 bit) in System Search.
+b)Select IDLE(Python3.7 64 bit)
+c)Write Python program on IDLE and Execute Python Program
+>>> print("Welcome to Python IDLE")      --> Click on Enter Button
+    Welcome to Python IDLE 
+
+b) By Using Python Shell in Command Prompt:
+--------------------------------------------
+a)Open Command Prompt.
+b)Use "python" command in Command Prompt.
+c)Write Python program and Execute Python Program.
+>>> print("Welcome To Python Shell in CMD")        --> Click on Enter button
+    Welcome To Python Shell in CMD
+
+c) By Using Editplus or Some Other Editors:
+---------------------------------------------
+To prepare and execute application by using Editplus, we have to use the following steps.
+a)Download and Install Editplus:
+   1)Open "https://www.editplus.com/download.html" url in Browser.
+   2)Select " Download EditPlus Version 4 (64-bit)" Link.
+   3)Copy the downloaded "epp430_64bit" setup file from downloads and keep it in         our Softwares dump.
+   4)Double Click on "epp430_64bit.exe" setup file.
+   5)Click on "Accept" button.
+   6)Click on "Yes" button.
+   7)Click on "Start Copy" Button.
+   8)Click on "OK" button.
+
+b)Open Python File and Write Python Program in Editplus:
+   1)Double Click on "Editplus" on Desktop.
+   2)Click on b"Yes" button.
+   3)Click on "OK" button.
+   4)Provide Subscription code and Click on OK button.
+   5)Select "File" 
+   6)Select "New"
+   7)Select "Others"
+   8)Select "Python"
+   9)Click on "OK" button. 
+   10)Write Python Program
+      print("Welcome To Python-Editplus")
+        
+c)Save Python File :
+   a)Select "File"
+   b)Select "Save"
+   c)Provide FileName.py
+   d)Click on "Save" button.
+
+d)Execute Python File 
+   a)Open Command Prompt.
+   b)Goto the location Where Python files are saved.
+   c)Use either "python" command or "py" command on Command Prompt.
+     D:\python10>python welcome.py
+      Welcome To Python Editplus
+
+    D:\python10>py welcome.py
+      Welcome To Python Editplus
+
+d)By Using Jupyter Notebook
+---------------------------
+Jupyter Notebook:
+-----------------
+1. Install notebook.
+   pip install notebook
+
+2. Open Jupyter Notebook
+   jupyter notebook
+
+We will get Notebook.
+
+NOTE:
+If Jupyter notebook is not working then change code in the following file.
+          C:\Python38\Lib\asyncio\__init__.py
+
+
+Existed Code
+-------------
+if sys.platform == 'win32':  # pragma: no cover
+    from .windows_events import *
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    __all__ += windows_events.__all__
+else:
+    from .unix_events import *  # pragma: no cover
+    __all__ += unix_events.__all__
+
+
+New Code
+----------
+import asyncio
+
+if sys.platform == 'win32':
+    from .windows_events import *
+    asyncio.set_event_loop_policy(asyncio.WindowsSelectorEventLoopPolicy())
+    __all__ += windows_events.__all__
+else:
+    from .unix_events import *  # pragma: no cover
+    __all__ += unix_events.__all__
+
+
+e) By Using PyCharm IDE
+-------------------------
+To prepare and execute applications by Using PyCharm IDE we have to use the following steps.
+
+1. Download and Install PyCharm IDE
+2. Open PyCharm IDE and Create Python Project
+3. Create Python File and Write Python Program
+4. Run Python Program
+
+1. Download and Install PyCharm IDE:
+-------------------------------------
+1. Open "https://www.jetbrains.com/pycharm/download/" in Browser.
+2. Click on "Download" under "Community".
+3. Copy the downloaded PyCharm Software from Downloads to Our Softwares Dump    location.
+ 
+4. Double Click on "pycharm-community-2019.2.exe" Setup File.
+5. Click on "Yes" button.
+6. Click on "Next" button.
+7. Change PyCharm installation location from 
+   "C:\Program Files\JetBrains\PyCharm Community Edition 2019.2"  to
+   "C:\PyCharm\PyCharm Community Edition 2019.2" 
+8. Click on "Next" button.
+9. Click on "Next" button.
+10.Click on "Install" button.
+11.Click on "Finish" button.
+
+2. Open PyCharm IDE and Create Python Project:
+----------------------------------------------
+1. Seaarch and Select "Jetbrains PyCharm Community Edition" in our System Search.
+2. Select "Light" Radio Button.
+3. Select "Skip Remaining and Set Defaults" button.
+4. Click on "Create New Project" Link.
+5. Specify the Project Location[D:\Python10\PyCharm]
+6. Click on "OK"
+7. Click on "Create" button.
+
+1. Select "File"
+2. Select "New Project"
+3. Provide Project Name [app01]
+4. Click "Create" button.
+5. Select "This Window".
+6. Right Click on "app01" project.
+7. Select "New"
+8. Select "Python Package".
+9. Provide Package Name [com.durgasoft]
+10.Click on "OK" button.
+
+3. Create Python File and Write Python Program:
+-------------------------------------------------
+1. Right Click on "durgasoft" package.
+2. Select "New"
+3. Select "Python File".
+4. Provide file name [welcome.py]
+5. Write Program in welcome.py file.
+    print("Welcome To PyCharm IDE")
+
+4. Run Python Program
+------------------------
+When we run first time:
+  a)Right CLick on Editor
+  b)Select "Run Welcome".
+From Second Time onwards:
+  Click on "Run" button.
