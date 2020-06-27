@@ -1,0 +1,368 @@
+Mongo DB:
+----------
+Introduction:
+---------------
+--> MongoDB is No SQL Database, where it is not required to write SQL Queries.
+--> MongoDB is a document database designed for ease of development and scaling.
+--> MongoDB is a Document Database , where document is refered as record", it is a data structer contains data in the     form of keys and values, where values may be single values or document or arrays or Arrays of other docuemnts.
+--> IN MongoDB, document is like a Json object.
+
+EX:
+---
+{
+   ENO: 111
+   ENAME: "AAA"
+   ESAL: 50000
+   EQUAL: ["BTech","MTech","PHD"]
+} 
+  
+--> In MongoDB, Collection is treated as Table in SQL, it contains no of docuemnts.
+
+
+1. Download and Install Mongodb:
+---------------------------------
+a)Download MongoDb from the link "https://www.mongodb.com/download-center/community"
+b)Double Click on "mongodb-win32-x86_64-2012plus-4.2.5-signed.msi" file which we download.
+c)Click on "Next".
+d)Select "I Accept the terms in the licence Agrement" and Click on "Next" button.
+e)Click on "Complete" button.
+f)Select “Run service as Network Service user” and Click on "Next" button.
+g)Click on "Install" button.
+f)Click on "Next" button.
+g)Click on "Finish" button.
+
+2. Open MongoDB console
+-------------------------
+To do operations in MongoDB, open MongoDB COnsole, for this, click on "Mongo.exe" file at the following locations "C:\MongoDB\Server\4.2\bin".
+
+--> To create Database
+> use durgadb
+switched to db durgadb
+
+--> To Check the current Database
+> db
+durgadb
+
+--> To Get All databases
+> show dbs
+admin   0.000GB
+config  0.000GB
+local   0.000GB
+
+--> To Create Collection
+> db.createCollection('emp1')
+{ "ok" : 1 }
+
+--> To get all Collection in Database
+> show collections
+emp1
+
+--> To Insert Single Docuemnt in Collection
+> db.emp1.insert( {ENO:111,ENAME:'AAA',ESAL:5000,EADDR:'Hyd'} )
+WriteResult({ "nInserted" : 1 })
+
+--> To Insert Multiple Documents in Collection.
+
+> db.emp1.insert([{ENO:222,ENAME:'BBB',ESAL:6000,EADDR:'Hyd'},{ENO:333,ENAME:'CCC',ESAL:7000,EADDR:'Hyd'}, {ENO:444,ENAME:'DDD',ESAL:8000,EADDR:'Hyd'}])
+BulkWriteResult({
+        "writeErrors" : [ ],
+        "writeConcernErrors" : [ ],
+        "nInserted" : 3,
+        "nUpserted" : 0,
+        "nMatched" : 0,
+        "nModified" : 0,
+        "nRemoved" : 0,
+        "upserted" : [ ]
+})
+
+--> To Get all documents from Collection.
+> db.emp1.find()
+{ "_id" : ObjectId("5e9bfe4811809c842e68e38a"), "ENO" : 111, "ENAME" : "AAA", "ESAL" : 5000, "EADDR" : "Hyd" }
+{ "_id" : ObjectId("5e9bfeb511809c842e68e38b"), "ENO" : 222, "ENAME" : "BBB", "ESAL" : 6000, "EADDR" : "Hyd" }
+{ "_id" : ObjectId("5e9bff1e11809c842e68e38c"), "ENO" : 333, "ENAME" : "CCC", "ESAL" : 7000, "EADDR" : "Hyd" }
+{ "_id" : ObjectId("5e9bff1e11809c842e68e38d"), "ENO" : 444, "ENAME" : "DDD", "ESAL" : 8000, "EADDR" : "Hyd" }
+
+--> To Get all documents from Collection in Json format
+> db.emp1.find().pretty()
+{
+        "_id" : ObjectId("5e9bfe4811809c842e68e38a"),
+        "ENO" : 111,
+        "ENAME" : "AAA",
+        "ESAL" : 5000,
+        "EADDR" : "Hyd"
+}
+{
+        "_id" : ObjectId("5e9bfeb511809c842e68e38b"),
+        "ENO" : 222,
+        "ENAME" : "BBB",
+        "ESAL" : 6000,
+        "EADDR" : "Hyd"
+}
+{
+        "_id" : ObjectId("5e9bff1e11809c842e68e38c"),
+        "ENO" : 333,
+        "ENAME" : "CCC",
+        "ESAL" : 7000,
+        "EADDR" : "Hyd"
+}
+{
+        "_id" : ObjectId("5e9bff1e11809c842e68e38d"),
+        "ENO" : 444,
+        "ENAME" : "DDD",
+        "ESAL" : 8000,
+        "EADDR" : "Hyd"
+}
+
+--> To perform Updations on Single Document
+> db.emp1.update({ENO:111},{$inc:{ESAL:500}})
+
+--> To Perform Updations on Many Docuemnts
+> db.emp1.updateMany({ESAL:{$lt:10000}},{$inc:{ESAL:500}})
+{ "acknowledged" : true, "matchedCount" : 4, "modifiedCount" : 4 }
+> db.emp1.find()
+{ "_id" : ObjectId("5e9bfe4811809c842e68e38a"), "ENO" : 111, "ENAME" : "AAA", "ESAL" : 5500, "EADDR" : "Hyd" }
+{ "_id" : ObjectId("5e9bfeb511809c842e68e38b"), "ENO" : 222, "ENAME" : "BBB", "ESAL" : 6500, "EADDR" : "Hyd" }
+{ "_id" : ObjectId("5e9bff1e11809c842e68e38c"), "ENO" : 333, "ENAME" : "CCC", "ESAL" : 7500, "EADDR" : "Hyd" }
+{ "_id" : ObjectId("5e9bff1e11809c842e68e38d"), "ENO" : 444, "ENAME" : "DDD", "ESAL" : 8500, "EADDR" : "Hyd" }
+
+--> To remove docuemnts from Collection:
+> db.emp1.remove({ESAL:{$lt:10000}})
+WriteResult({ "nRemoved" : 4 })
+> db.emp1.find()
+> db.emp1.find().pretty()
+
+--> To drop Collection from DB
+> db.emp1.find().pretty()
+> db.emp1.drop()
+true
+>
+
+--> To drop database from MongoDB.
+> db.dropDatabase()
+{ "dropped" : "durgadb", "ok" : 1 }
+>
+
+Steps to prepare PDBC Application With MongoDB:
+1)Add "pymongo" library to project
+2)Prepare Python file and Write PDBC Code
+
+1)Add "pymongo" library to project
+-----------------------------------
+To prepare PDBC applications, if we want to use MongoDb then we have to use "pymongo" explicit library.
+To add explicit libraries to Visual Studeo, we have to use the following steps.
+1. Select "Project"
+2. Right Client on "Python Environment" and select "View All Environments".
+3. Select Packages[PyPi]
+4. Search "pymongo"
+5. Click on "enter" button.
+
+2)Prepare Python file and Write PDBC Code:
+------------------------------------------
+a)Import pymongo module:
+    import pymongo
+
+b)Create Client:
+    client = pymongo.MongoClient()
+             or
+    client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+
+c)Create Database:
+    empDB = client['employee']
+
+d)Create Collection:
+    empCollection = empDB.emp1
+
+e)Perform Database Operations:
+    1)To Insert Docuemtns:
+    	empCollection.insert_one()
+    	empCollection.insert_many()
+        empCollection.insert()
+ 
+    2)To find documents:
+        empCollection.find_one()
+        empCollection.find_many()
+        empCollection.find()
+
+     3)To update Cololection:
+        empCollection.update_one()
+        empCollection.update_many()
+        empCollection.update()
+
+     4)To delete documents from Collection:
+        empCollection.delete_one()
+        empCollection.delete_many()
+        empCollection.delete()
+
+      EX:docuemnt = empCollection.insert_one({'ENO':111,'ENAME':"AAA",'ESAL':5000,'EADDR':"Hyd"})
+f)Close Client.
+    client.close()
+
+EX1: To Insert a docuemt in Collection:
+----------------------------------------
+from pymongo import MongoClient
+
+client = MongoClient()
+print("Client Is Ready")
+
+empDB = client['employee']
+print("DB Is Created")
+
+empCollection = empDB.emp1
+print("emp1 Collection is Created")
+
+docuemnt = empCollection.insert_one({'ENO':111,'ENAME':"AAA",'ESAL':5000,'EADDR':"Hyd"})
+print("Docuemt Inserted")
+
+client.close()
+print("Client Closed")
+
+EX2: To insert many docuemnts in Collection:
+---------------------------------------------
+import pymongo
+
+
+client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+print("Client Is Ready")
+
+empDB = client['employee']
+print("DB Is Created")
+
+empCollection = empDB.emp1
+print("emp1 Collection is Created")
+
+document = empCollection.insert_many([{'ENO':222,'ENAME':'BBB','ESAL':6000,'EADDR':'Hyd'},{'ENO':333,'ENAME':'CCC','ESAL':7000,'EADDR':'Hyd'},{'ENO':444,'ENAME':'DDD','ESAL':8000,'EADDR':'Hyd'}])
+print(document)
+print("Docuemts Inserted")
+client.close()
+print("Client Closed")
+
+EX3: To Read Single Document from Collection:
+-----------------------------------------------
+import pymongo
+
+client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+db = client['employee']
+collection = db['emp1']
+result = collection.find_one({"ENO":222})
+print(result)
+
+EX4: To Read Multiple Records from Collections:
+-------------------------------------------------
+import pymongo
+
+client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+db = client['employee']
+collection = db['emp1']
+result = collection.find()
+for document in result:
+    print(document)
+
+EX5:
+----
+import pymongo
+
+client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+db = client['employee']
+collection = db['emp1']
+result = collection.find()
+print("ENO\tENAME\tESAL\tEADDR")
+print("------------------------------")
+for document in result:
+    for value in list(document.values())[1::]:
+        print(value,end="\t")
+    print()
+
+
+EX5: To Update Single Docuemnt in Collection:
+---------------------------------------------
+import pymongo
+
+client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+db = client['employee']
+collection = db['emp1']
+result = collection.update_one({"ENO":222},{"$inc":{"ESAL":500}})
+print("Document Updated Successfully")
+client.close()
+
+
+EX6: To perform Updations on docuemnts in Collection:
+-------------------------------------------------------
+import pymongo
+
+client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+db = client['employee']
+collection = db['emp1']
+collection.update_many({"ESAL":{"$lt":10000}},{"$inc":{"ESAL":500}})
+print("Documents Updated Successfully")
+client.close()
+
+Note: Instead of Using update_one() and update_many() we are able to use update() function to update any no of docuemnts.
+
+EX7: To delete documents from Collection:
+-------------------------------------------
+import pymongo
+
+client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+db = client['employee']
+collection = db['emp1']
+result = collection.delete_one({"ENO":222})
+print("Document Deleted Successfully")
+client.close()
+
+EX8: To Delete Many Docuemnts from Collection:
+-------------------------------------------------
+import pymongo
+
+client = pymongo.MongoClient("mongodb://127.0.0.1:27017")
+db = client['employee']
+collection = db['emp1']
+result = collection.delete_many({"ESAL":{"$lt":10000}})
+print("Documents Deleted Successfully")
+client.close()
+
+
+ 
+
+
+
+
+
+
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+ 
